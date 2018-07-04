@@ -6,7 +6,7 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
-
+5.0.1
 * System dependencies
 
 * Configuration
@@ -29,12 +29,17 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
+|name|string|null: false, index: :true|
 |email|string|null: false, unique: true|
 
+>nameは検索に使用するので、indexを追加
+>emailは一意なものにする
 
 #### Association
-- belongs_to :members
+- has_many :members
+- has_many :groups, through: :memebrs
+- has_many :messages
+>中間テーブルmembersを通してgroupsと多対多の関係
 
 <br>
 
@@ -42,12 +47,15 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
+>これはuserとgroupの中間テーブル.
+>references型で外部キー制約.references型のforeign_keyにindex: trueは不要（勝手にindexされる）
 
 #### Association
 - belongs_to :group
 - belongs_to :user
+
 
 <br>
 
@@ -57,6 +65,12 @@ Things you may want to cover:
 |------|----|-------|
 |name|string|null: false|
 
+#### Association
+- has_many :members
+- has_many :users, through: :members
+- has_many :messages
+>中間テーブルmembersを通してusersと多対多の関係
+
 <br>
 
 ## message table
@@ -64,9 +78,11 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |text|text||
-|user_id|integer|foreign_key: true|
-|group_id|integer|foreign_key: true|
-
+|image|text||
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
+>references型で外部キー制約.references型のforeign_keyにindex: trueは不要（勝手にindexされる）
+>テキストと画像（url）が投稿できる
 #### Association
 - belongs_to :group
 - belongs_to :user

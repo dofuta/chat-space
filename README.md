@@ -37,7 +37,7 @@ Things you may want to cover:
 
 #### Association
 - has_many :members
-- has_many :groups, through: :memebrs
+- has_many :groups, through: :members
 - has_many :messages
 >中間テーブルmembersを通してgroupsと多対多の関係
 

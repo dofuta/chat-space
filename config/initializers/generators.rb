@@ -1,3 +1,5 @@
+#rails g controllerを行うときの、デフォルトで生成されるファイルの設定。このファイルごと新しく作成した。
+
 Rails.application.config.generators do |g|
   g.stylesheets false
   g.javascripts false

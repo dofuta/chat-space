@@ -1,2 +1,25 @@
 !!!
 hello world
+.Notification
+.ChatSide
+  .ChatSide__user
+    .ChatSide__userContent
+      .ChatSide__userContent--name
+      .ChatSide__userContent--newGroup
+      .ChatSide__userContent--editUser
+  .ChatSide__groups
+    .ChatSide__groupsList
+      .ChatSide__groups
+        =render partial: "group", collection: @groups
+
+.ChatMain
+  .ChatMain__header
+    .ChatMain__header--name
+    .ChatMain__header--editButton
+    .ChatMain__header--members
+  .ChatMain__body
+    .ChatMain__messageList
+      =render partial: "message", collection: @messages
+  .ChatMain__footer
+    .ChatMain__footer--typeArea
+    .ChatMain__footer--sendButton

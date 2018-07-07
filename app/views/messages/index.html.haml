@@ -2,13 +2,11 @@
 .Notification
 .ChatSide
   .ChatSide__user
-    .ChatSide__userContent
-      .ChatSide__userContent--name
-      .ChatSide__userContent--newGroup
-      .ChatSide__userContent--editUser
+    .ChatSide__user--name
+    .ChatSide__user--newGroup
+    .ChatSide__user--editUser
   .ChatSide__groups
     .ChatSide__groupsList
-      .ChatSide__groups
         =render partial: "group", collection: @groups
 
 .ChatMain

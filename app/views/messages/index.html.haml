@@ -3,8 +3,10 @@
 .ChatSide
   .ChatSide__user
     .ChatSide__userName username
-    .ChatSide__userNewGroup a
-    .ChatSide__userEditUser b
+    .ChatSide__userNewGroup
+      %i.fa.fa-cog.-icon
+    .ChatSide__userEditUser
+      %i.fa.fa-edit.-icon
   .ChatSide__groupList
     -# =render partial: "group", collection: @groups
     .ChatSide__group

@@ -1,0 +1,13 @@
+&__group{
+  height: 100px;
+  width: 100%;
+  color: white;
+  &Name{
+    padding: 20px 0 0 15px;
+  }
+  &FirstMessage{
+    color: $gray;
+    padding: 10px 0 0 35px;
+    font-size: 15px;
+  }
+}

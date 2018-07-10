@@ -1,0 +1,19 @@
+.ChatMain__message{
+  margin-top: 25px;
+  &Username{
+    font-size: 16px;
+    color: $blackGray;
+    float: left;
+    font-weight: bold;
+  }
+  &Date{
+    color: $gray;
+    font-size: 8px;
+    float: left;
+    margin: 5px 0 0 10px;
+  }
+  &Body{
+    padding-top: 5px;
+    clear: both;
+  }
+}

@@ -1,6 +1,9 @@
 @import "./reset";
 @import "./variable";
+@import "./group";
+@import "./message"
 @import "font-awesome";
+
 
 
 html{
@@ -72,19 +75,6 @@ html{
 
   &__groupList{
   }
-  &__group{
-    height: 100px;
-    width: 100%;
-    color: white;
-    &Name{
-      padding: 20px 0 0 15px;
-    }
-    &FirstMessage{
-      color: $gray;
-      padding: 10px 0 0 35px;
-      font-size: 15px;
-    }
-  }
 }
 
 
@@ -135,25 +125,7 @@ html{
     height: calc( 100vh - 202px );
   }
 
-  &__message{
-    margin-top: 25px;
-    &Username{
-      font-size: 16px;
-      color: $blackGray;
-      float: left;
-      font-weight: bold;
-    }
-    &Date{
-      color: $gray;
-      font-size: 8px;
-      float: left;
-      margin: 5px 0 0 10px;
 
-    }
-    &Body{
-      padding-top: 5px;
-      clear: both;
-    }
   }
 
   &__footer{
@@ -186,11 +158,4 @@ html{
 
     }
   }
-
-  .-icon{
-
-  }
-
-
-
 }

@@ -1,7 +1,7 @@
 @import "./reset";
 @import "./variable";
 @import "./group";
-@import "./message"
+@import "./message";
 @import "font-awesome";
 
 
@@ -125,9 +125,6 @@ html{
     height: calc( 100vh - 202px );
   }
 
-
-  }
-
   &__footer{
     height: 100px;
     clear: both;
@@ -154,8 +151,6 @@ html{
       align-items: center;
       // 中身の要素横方向中央寄せ
       justify-content: center;
-
-
     }
   }
 }

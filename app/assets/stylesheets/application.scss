@@ -85,6 +85,8 @@ html{
   &__header{
     height: 82px;
     float: left;
+    border-bottom: 1px solid;
+    border-color: #CCCCCC;
     &Name{
       height: 70%;
       width: 400px;

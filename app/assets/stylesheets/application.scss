@@ -11,19 +11,19 @@ html{
   width: 100%;
 }
 
-.Notification {
-  background-color: $blue;
+.FlashMessage {
+  float: left;
   color: white;
   font-weight: bold;
   font-size: 15px;
   width: 100vw;
-  height: 30px;
-  float: left;
-  // 中身の要素横方向中央寄せ
-  display: flex;
-  align-items: center;
-  // 中身の要素縦方向中央寄せ
-  justify-content: center;
+  text-align: center;
+  &__notice{
+    background-color: $blue;
+  }
+  &__alert{
+    background-color: $red;
+  }
 }
 
 .ChatSide {

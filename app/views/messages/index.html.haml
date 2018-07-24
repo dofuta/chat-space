@@ -2,14 +2,14 @@
   .FlashMessage
     %p.FlashMessage__notice= notice
     %p.FlashMessage__alert= alert
-    
+
 .ChatSide
   .ChatSide__user
     .ChatSide__userName username
     .ChatSide__userNewGroup
-      %i.fa.fa-cog
+      =fa_icon "cog"
     .ChatSide__userEditUser
-      %i.fa.fa-edit
+      =fa_icon "edit"
   .ChatSide__groupList
     -# =render partial: "group", collection: @groups
     .ChatSide__group

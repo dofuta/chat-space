@@ -12,10 +12,7 @@
     .ChatSide__userEditUser
       =fa_icon "edit"
   .ChatSide__groupList
-    -# =render partial: "group", collection: @groups
-    .ChatSide__group
-      .ChatSide__groupName Test Group 01
-      .ChatSide__groupFirstMessage This is a test message.
+    =render partial: "group", collection: @groups
 
 .ChatMain
   .ChatMain__header
@@ -23,16 +20,7 @@
     .ChatMain__headerEditButton Edit
     .ChatMain__headerMembers Members: test01, test02, test03, test04, test05
   .ChatMain__body
-    -# =render partial: "message", collection: @messages
-    .ChatMain__message
-      .ChatMain__messageUsername test01
-      .ChatMain__messageDate 2018/7/8 13:00
-      .ChatMain__messageBody this is a test message.
-    -# =render partial: "message", collection: @messages
-    .ChatMain__message
-      .ChatMain__messageUsername test01
-      .ChatMain__messageDate 2018/7/8 13:00
-      .ChatMain__messageBody this is a test message.
+    =render partial: "message", collection: @messages
 
   .ChatMain__footer
     .ChatMain__footerTypeArea

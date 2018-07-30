@@ -1,0 +1,14 @@
+.FlashMessage {
+  float: left;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  width: 100vw;
+  text-align: center;
+  &__notice{
+    background-color: $blue;
+  }
+  &__alert{
+    background-color: $red;
+  }
+}

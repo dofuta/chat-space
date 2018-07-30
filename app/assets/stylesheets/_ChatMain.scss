@@ -3,7 +3,7 @@
   height: 100vh;
   width: calc( 100vw - 300px );
   &__header{
-    height: 82px;
+    height: 96px;
     width: 100%;
     float: left;
     border-bottom: 1px solid;
@@ -45,7 +45,7 @@
   &__body{
     clear: both;
     padding: 20px 0 0 40px;
-    height: calc( 100vh - 202px );
+    height: calc( 100vh - 217px );
   }
 
   &__footer{

@@ -1,16 +1,10 @@
--# =render partial: "noitfication"
-- if flash.any?
-  .FlashMessage
-    %p.FlashMessage__notice= notice
-    %p.FlashMessage__alert= alert
-
 .ChatSide
   .ChatSide__user
-    .ChatSide__userName username
+    .ChatSide__userName= current_user.name
     .ChatSide__userNewGroup
-      =fa_icon "cog"
-    .ChatSide__userEditUser
       =fa_icon "edit"
+    =link_to edit_user_path(current_user),class: "ChatSide__userEditUser" do
+      =fa_icon "cog"
   .ChatSide__groupList
     =render partial: "group", collection: @groups
 

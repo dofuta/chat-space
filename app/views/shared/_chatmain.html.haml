@@ -1,0 +1,13 @@
+.ChatMain
+  .ChatMain__header
+    .ChatMain__headerName testgroup
+    .ChatMain__headerEditButton Edit
+    .ChatMain__headerMembers Members: test01, test02, test03, test04, test05
+  .ChatMain__body
+    =render partial: "shared/message", collection: @messages
+
+  .ChatMain__footer
+    .ChatMain__footerTypeArea
+    .ChatMain__footerImageTag
+      =fa_icon "image"
+    .ChatMain__footerSendButton SEND

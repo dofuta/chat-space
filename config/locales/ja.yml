@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      group: グループ
+      user: ユーザー
+      message: メッセージ
+    attributes:
+      group:
+        name: 名前
+      user:
+        name: 名前
+        email: Eメール
+      message:

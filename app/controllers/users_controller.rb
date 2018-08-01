@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       flash[:notice] = "アカウントが登録されました。"
     else
       render action: :edit
-      flash[:notice] = "登録できませんでした。"
+      flash[:alart] = "登録できませんでした。"
     end
   end
 

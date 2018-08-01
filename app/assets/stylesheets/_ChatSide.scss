@@ -22,27 +22,22 @@
 
     // font-awsomeのアイコン
     &NewGroup{
-      height: 100%;
-      width: 20px;
       float: left;
-      margin-left: 5px;
+      margin: 24px 3px 22px 0;
       // 中身の要素縦方向中央寄せ
       display: flex;
-      align-items: center;
       color: white;
       font-size: 18px;
+      text-decoration: none;
     }
 
     // font-awsomeのアイコン
     &EditUser{
-      height: 18px;
-      width: 18px;
       float: left;
-      margin: 23px 0;
+      margin: 23px 0 23px 0;
       margin-left: 5px;
       // 中身の要素縦方向中央寄せ
       display: flex;
-      align-items: center;
       color: white;
       font-size: 18px;
       text-decoration: none;

@@ -1,0 +1,9 @@
+.ChatSide
+  .ChatSide__user
+    .ChatSide__userName= current_user.name
+    =link_to new_group_path, class: "ChatSide__userNewGroup" do
+      =fa_icon "edit"
+    =link_to edit_user_path(current_user),class: "ChatSide__userEditUser" do
+      =fa_icon "cog"
+  .ChatSide__groupList
+    =render partial: "shared/group", collection: current_user.groups

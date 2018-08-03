@@ -60,6 +60,7 @@
       width: 80%;
       margin-left: 20px;
       background-color: white;
+      border: none;
     }
     &ImageTag{
       height: 60px;
@@ -87,6 +88,7 @@
       align-items: center;
       // 中身の要素横方向中央寄せ
       justify-content: center;
+      border: none;
     }
   }
 }

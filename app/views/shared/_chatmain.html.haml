@@ -6,8 +6,8 @@
   .ChatMain__body
     =render partial: "shared/message", collection: @messages
 
-  .ChatMain__footer
-    .ChatMain__footerTypeArea
+  =form_for @message, url: group_messages_path, html: {class: "ChatMain__footer"} do |f|
+    =f.text_field :text, class: "ChatMain__footerTypeArea"
     .ChatMain__footerImageTag
       =fa_icon "image"
-    .ChatMain__footerSendButton SEND
+    =f.submit :SEND ,class: "ChatMain__footerSendButton", style: "cursor:pointer"

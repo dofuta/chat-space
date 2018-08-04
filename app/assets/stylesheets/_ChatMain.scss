@@ -26,12 +26,15 @@
       border: 1px solid;
       border-color: $blue;
       float: right;
-      color: $blue;
       // 中身の要素縦方向中央寄せ
       display: flex;
       align-items: center;
       // 中身の要素横方向中央寄せ
       justify-content: center;
+      a{
+        text-decoration: none;
+        color: $blue;
+      }
     }
     &Members{
       height: 30%;

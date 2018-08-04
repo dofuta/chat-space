@@ -2,7 +2,9 @@
   .ChatMain__header
     .ChatMain__headerName
       =@group.name
-    .ChatMain__headerEditButton Edit
+    .ChatMain__headerEditButton
+      =link_to edit_group_path(@group) do
+        Edit
     .ChatMain__headerMembers
       Menber:
       =@group_member_names.join(", ")

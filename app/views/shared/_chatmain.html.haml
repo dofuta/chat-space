@@ -6,8 +6,12 @@
   .ChatMain__body
     =render partial: "shared/message", collection: @messages
 
+  -# indexアクションで作っているので、@messageだけだと、form_forによって、デフォルトで生成される(new_messages_path…？確か。)に飛んでしまい、
+    そんなパスは存在しないので、エラーになる。なのでurlを指定。
   =form_for @message, url: group_messages_path, html: {class: "ChatMain__footer"} do |f|
     =f.text_field :text, class: "ChatMain__footerTypeArea"
     .ChatMain__footerImageTag
-      =fa_icon "image"
+      =f.label :image, style: "cursor:pointer" do
+        =f.file_field :image
+        =fa_icon "image"
     =f.submit :SEND ,class: "ChatMain__footerSendButton", style: "cursor:pointer"

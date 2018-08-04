@@ -68,11 +68,16 @@
       font-size: 20px;
       background-color: white;
       color: $chatSideColor;
+
       // 中身の要素縦方向中央寄せ
       display: flex;
       align-items: center;
       // 中身の要素横方向中央寄せ
       justify-content: center;
+
+      input{
+        display: none;
+      }
 
     }
     &SendButton{

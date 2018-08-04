@@ -54,4 +54,7 @@ node_modules/
 # Ignore test folder
 /test
 
+# Ignore upload folder for carrierwave images uploaded
+/public/uploads
+
 # End of https://www.gitignore.io/api/rails

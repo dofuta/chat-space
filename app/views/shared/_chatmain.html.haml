@@ -1,13 +1,24 @@
 .ChatMain
   .ChatMain__header
-    .ChatMain__headerName testgroup
-    .ChatMain__headerEditButton Edit
-    .ChatMain__headerMembers Members: test01, test02, test03, test04, test05
+    .ChatMain__headerName
+      =@group.name
+    .ChatMain__headerEditButton
+      =link_to edit_group_path(@group) do
+        Edit
+    .ChatMain__headerMembers
+      Menber:
+      =@group_member_names.join(", ")
+
+
   .ChatMain__body
     =render partial: "shared/message", collection: @messages
 
-  .ChatMain__footer
-    .ChatMain__footerTypeArea
+  -# indexアクションで作っているので、@messageだけだと、form_forによって、デフォルトで生成される(new_messages_path…？確か。)に飛んでしまい、
+    そんなパスは存在しないので、エラーになる。なのでurlを指定。
+  =form_for @message, url: group_messages_path, html: {class: "ChatMain__footer"} do |f|
+    =f.text_field :text, class: "ChatMain__footerTypeArea"
     .ChatMain__footerImageTag
-      =fa_icon "image"
-    .ChatMain__footerSendButton SEND
+      =f.label :image, style: "cursor:pointer" do
+        =f.file_field :image
+        =fa_icon "image"
+    =f.submit :SEND ,class: "ChatMain__footerSendButton", style: "cursor:pointer"

@@ -1,5 +1,5 @@
-.ChatSide__group
+=link_to group_messages_path(group), class:"ChatSide__group" do
   .ChatSide__groupName
     =group.name
   .ChatSide__groupFirstMessage
-    メッセージはまだありません。
+    =group.messages[-1].text if group.messages[-1].present?

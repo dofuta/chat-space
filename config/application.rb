@@ -12,5 +12,13 @@ module Chatspace
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = :ja
+
+    #タイムゾーンを日本時間に設定
+    config.time_zone = 'Asia/Tokyo'
+
+    #field_with_errorsのdivが勝手に吐き出されるのを防ぐ（レイアウトが崩れるため）
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+      %Q(#{html_tag}).html_safe
+    end
   end
 end

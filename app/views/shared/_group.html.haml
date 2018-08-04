@@ -2,4 +2,4 @@
   .ChatSide__groupName
     =group.name
   .ChatSide__groupFirstMessage
-    メッセージはまだありません。
+    =group.messages[0].text if group.messages[0].present?

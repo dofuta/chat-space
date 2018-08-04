@@ -1,4 +1,9 @@
 .ChatMain__message
   .ChatMain__messageUsername
+    =message.user.name
   .ChatMain__messageDate
+    =simple_time(message.created_at)
   .ChatMain__messageBody
+    =message.text if message.text.present?
+  .ChatMain__messageBodyImage
+    =image_tag message.image.url, class: 'ChatMain__messageBodyImage' if message.image.present?

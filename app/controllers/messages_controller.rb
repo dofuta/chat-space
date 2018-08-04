@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   def index
     @message = Message.new
+    @messages = Group.find(params[:group_id]).messages
   end
 
   def create

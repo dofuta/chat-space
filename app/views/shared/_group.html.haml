@@ -2,4 +2,4 @@
   .ChatSide__groupName
     =group.name
   .ChatSide__groupFirstMessage
-    =group.messages[0].text if group.messages[0].present?
+    =group.messages[-1].text if group.messages[-1].present?

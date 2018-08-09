@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
       redirect_to group_messages_path
     else
       flash[:alert] = "メッセージを入力してください。"
-      redirect_to action: :index
+      render action: :index #このままでは、indexのビューを表示しただけで、indexアクションはおこなわれていないので、messagesが取得できていない
     end
   end
 

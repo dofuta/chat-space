@@ -49,6 +49,7 @@
     clear: both;
     padding: 20px 0 0 40px;
     height: calc( 100vh - 217px );
+    overflow: scroll;
   }
 
   &__footer{

@@ -6,9 +6,6 @@ class MessagesController < ApplicationController
     @messages = @group.messages
     @groups = current_user.groups.includes(:user)
 
-    #グループメンバーの名前の配列
-    @group_member_names = @group.users.map{|user| user.name}
-
   end
 
   def create

@@ -7,7 +7,7 @@
         Edit
     .ChatMain__headerMembers
       Menber:
-      =@group_member_names.join(", ") if @group_member_names.present?
+      =@group.users.map{|user| user.name}.join(", ") if @group_member_names.present?
 
 
   .ChatMain__body

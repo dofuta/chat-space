@@ -4,13 +4,10 @@ class MessagesController < ApplicationController
   def index
     @message = Message.new
     @messages = @group.messages
-    @groups = current_user.groups
+    @groups = current_user.groups.includes(:user)
 
     #グループメンバーの名前の配列
-    @group_member_names = []
-    @group.users.each do |user|
-      @group_member_names << user.name
-    end
+    @group_member_names = @group.users.map{|user| user.name}
 
   end
 

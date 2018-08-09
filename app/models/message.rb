@@ -5,6 +5,8 @@ class Message < ApplicationRecord
 #imageかtextのどちらか一方が無ければならない様にバリデーション
   validates :text, presence: true,  unless: :image?
   validates :image, presence: true, unless: :text?
+  validates :group_id, presence: true
+  validates :user_id, presence: true
 
   mount_uploader :image, ImageUploader
 

@@ -5,17 +5,19 @@ class MessagesController < ApplicationController
     @message = Message.new
     @messages = @group.messages
     @groups = current_user.groups.includes(:user)
-
   end
 
   def create
-    @message = @group.messages.new(message_params)
+    @message = @group.messages.new(message_params) #ネストさせてnewすることで、自動で親のidが子の'親_id'カラムに挿入される
     if @message.save
-      flash[:notice] = "メッセージを送信しました。"
-      redirect_to group_messages_path
+      respond_to do |format|
+        format.html {redirect_to group_messages_path, notice: "メッセージを送信しました。"}
+        format.json
+      end
+      # html使わないならrespond_to :json の方が良さそう
     else
-      flash[:alert] = "メッセージを入力してください。"
-      render action: :index #このままでは、indexのビューを表示しただけで、indexアクションはおこなわれていないので、messagesが取得できていない
+      #未入力の判定はjqueryですでに行なっているので基本的にはここは読まれない
+      redirect_to group_messages_path, alert: "メッセージを入力してください。"
     end
   end
 

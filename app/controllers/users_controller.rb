@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     #検索
     @users = User.where('name LIKE ?',"%#{params[:keyword]}%" )
     #jbuilderを返す
-    render :json
+    render json: @users
   end
 
   private

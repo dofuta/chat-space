@@ -1,5 +1,4 @@
 $(function() {
-  console.log("hahahaha")
   function buildHTML(message) {
     var html = `<div class='ChatMain__message'>
                   <div class='ChatMain__messageUsername'>
@@ -55,11 +54,13 @@ $(function() {
       })
       //失敗した場合
       .fail(function(){
+        $.rails.enableFormElements($('#new_message')); //使用済みのformを有効化する。（本来は書かなくてもjquery-railsがやってくれているはずなのだが、、）
         buildFlash("メッセージの送信に失敗しました。","alert");
       });
     }
     else{
       buildFlash("メッセージを入力してください。","alert");
+      // $('#commit').prop('disabled', false); //submitボタンを有効化する。（本来は書かなくてもjquery-railsがやってくれているはずなのだが、、）
     }
   });
 });

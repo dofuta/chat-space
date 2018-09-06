@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', function() {
   // リスト表示する親要素
   var search_list = $('#user-search-result');
 

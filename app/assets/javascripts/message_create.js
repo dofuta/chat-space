@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function()  {
   function buildHTML(message) {
     var html = `<div class='ChatMain__message'>
                   <div class='ChatMain__messageUsername'>
@@ -16,13 +16,15 @@ $(function() {
   }
 
   function buildFlash(flashmessage,type){
+    // flashmessageを削除
+    $('.FlashMessage').empty();
     // flashmessageを作成
-    var flashmessage = `<p class='FlashMessage__${type}'>
-                          ${flashmessage}
-                        <p>`
-    // flashmessageを挿入
-    $('.FlashMessage').prepend(flashmessage)
-  }
+      var flashmessage = `<p class='FlashMessage__${type}'>
+                            ${flashmessage}
+                          <p>`
+      // flashmessageを挿入
+      $('.FlashMessage').prepend(flashmessage)
+  };
 
   $('#new_message').on('submit', function(e){ // submitされた時に送られるparamsが引数に入る
     e.preventDefault();
@@ -47,22 +49,20 @@ $(function() {
         var html = buildHTML(data);
         $('.ChatMain__body').append(html) //新たに生成されたhtmlをchatmain_body以下の最後に追加する
         $('.ChatMain__footerTypeArea').val('') //タイプエリアを空白にする
-
-        $.rails.enableFormElements($('#new_message')); //使用済みのformを有効化する。（本来は書かなくてもjquery-railsがやってくれているはずなのだが、、）
-
+        $('#message_image').val('') //imageファイルを空にする
         $('.ChatMain__body').animate({scrollTop: $('.ChatMain__body')[0].scrollHeight}, 500, 'swing'); //最新のメッセージまで移動
-
         buildFlash("メッセージを送信しました。","notice")
       })
       //失敗した場合
       .fail(function(){
-        $.rails.enableFormElements($('#new_message')); //使用済みのformを有効化する。（本来は書かなくてもjquery-railsがやってくれているはずなのだが、、）
+        // 予備知識
+        // $.rails.enableFormElements($('#new_message')); //使用済みのformを有効化する。（本来は書かなくてもjquery-railsがやってくれているはずなのだが、、）
+        // formのタグにdisabledが追加されてボタンが押せなくなってしまうので、ここで上記を記入して解除か、application.rbに記述して自動の昨日を解除
         buildFlash("メッセージの送信に失敗しました。","alert");
       });
     }
     else{
       buildFlash("メッセージを入力してください。","alert");
-      // $('#commit').prop('disabled', false); //submitボタンを有効化する。（本来は書かなくてもjquery-railsがやってくれているはずなのだが、、）
     }
   });
 });

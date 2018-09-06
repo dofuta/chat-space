@@ -1,4 +1,5 @@
 $(function() {
+  console.log("hahahaha")
   function buildHTML(message) {
     var html = `<div class='ChatMain__message'>
                   <div class='ChatMain__messageUsername'>
@@ -47,6 +48,8 @@ $(function() {
         var html = buildHTML(data);
         $('.ChatMain__body').append(html) //新たに生成されたhtmlをchatmain_body以下の最後に追加する
         $('.ChatMain__footerTypeArea').val('') //タイプエリアを空白にする
+
+        $.rails.enableFormElements($('#new_message')); //使用済みのformを有効化する。（本来は書かなくてもjquery-railsがやってくれているはずなのだが、、）
 
         buildFlash("メッセージを送信しました。","notice")
       })

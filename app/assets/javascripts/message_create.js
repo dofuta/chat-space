@@ -50,6 +50,8 @@ $(function() {
 
         $.rails.enableFormElements($('#new_message')); //使用済みのformを有効化する。（本来は書かなくてもjquery-railsがやってくれているはずなのだが、、）
 
+        $('.ChatMain__body').animate({scrollTop: $('.ChatMain__body')[0].scrollHeight}, 500, 'swing'); //最新のメッセージまで移動
+
         buildFlash("メッセージを送信しました。","notice")
       })
       //失敗した場合

@@ -4,13 +4,7 @@ class MessagesController < ApplicationController
   def index
     @message = Message.new
     @messages = @group.messages
-    @groups = current_user.groups
-
-    #グループメンバーの名前の配列
-    @group_member_names = []
-    @group.users.each do |user|
-      @group_member_names << user.name
-    end
+    @groups = current_user.groups.includes(:user)
 
   end
 
@@ -21,7 +15,7 @@ class MessagesController < ApplicationController
       redirect_to group_messages_path
     else
       flash[:alert] = "メッセージを入力してください。"
-      render action: :index
+      render action: :index #このままでは、indexのビューを表示しただけで、indexアクションはおこなわれていないので、messagesが取得できていない
     end
   end
 

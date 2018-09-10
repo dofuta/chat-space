@@ -5,7 +5,8 @@
 
 server "52.196.254.136", user: "ec2-user", roles: %w{app db web}
 set :ssh_options, {
-  keys: [File.expand_path('~/.ssh/my_key_pair.pem)')],
+  keys: %w(/Users/doufukutaisei/.ssh/my_key_pair.pem),
+  forward_agent: false,
   auth_methods: %w(publickey)
 }
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value

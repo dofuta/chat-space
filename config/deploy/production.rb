@@ -3,7 +3,7 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-server "52.196.254.136", user: "ec2-user", roles: %w{app db web},
+server "52.196.254.136", user: "ec2-user", roles: %w{app db web}
 set :ssh_options, {
   keys: [File.expand_path('~/.ssh/my_key_pair.pem)')],
   auth_methods: %w(publickey)

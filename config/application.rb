@@ -13,6 +13,9 @@ module Chatspace
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = :ja
 
+    # フォーム送信後自動でformのタグにdisabledが追加されて無効化されるのを解除する。
+    config.action_view.automatically_disable_submit_tag = false
+
     #タイムゾーンを日本時間に設定
     config.time_zone = 'Asia/Tokyo'
 

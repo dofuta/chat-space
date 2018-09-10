@@ -10,7 +10,8 @@ set :rbenv_type, :user
 set :rbenv_ruby, '2.3.1'
 
 set :ssh_options, {
-  keys: [File.expand_path('~/.ssh/my_key_pair.pem)')]
+  keys: [File.expand_path('~/.ssh/my_key_pair.pem)')],
+  auth_methods: %w(publickey)
 }
 
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }

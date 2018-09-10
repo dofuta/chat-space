@@ -9,7 +9,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :rbenv_type, :user
 set :rbenv_ruby, '2.3.1'
 
-set :ssh_options, auth_methods: ['publickey'],
+set :ssh_options, auth_methods: ['publickey'], forward_agent: true,
                   keys: ['/Users/doufukutaisei/.ssh/my_key_pair.pem']
 
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }

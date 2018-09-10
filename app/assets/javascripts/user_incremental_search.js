@@ -23,7 +23,6 @@ $(document).on('turbolinks:load', function() {
   $('#user-search-field').on('keyup',function(){
     // インプットされたユーザー検索文字列
     var input = $('#user-search-field.chat-group-form__input').val();
-    console.log(input);
     // 検索窓が空白でなければ
     if (input != ""){
       // ajaxを実行

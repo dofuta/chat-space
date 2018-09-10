@@ -16,6 +16,9 @@ set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
 set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
 set :keep_releases, 5
 
+# vendorディレクトリは無視する。
+set :exclude_dir, ['vendor']
+
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do

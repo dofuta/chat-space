@@ -1,5 +1,13 @@
 $(document).on('turbolinks:load', function()  {
   function buildHTML(message) {
+    // 画像の投稿があった場合
+    if(message.image_url != undefined){
+      var image = `<img class='ChatMain__messageBodyImage', src="${message.image_url}">`
+    }else{
+    // 画像の投稿がなかった場合
+      var image = ''
+    }
+    // メッセージのhtmlを作成
     var html = `<div class='ChatMain__message'>
                   <div class='ChatMain__messageUsername'>
                     ${message.user_name}
@@ -10,7 +18,7 @@ $(document).on('turbolinks:load', function()  {
                   <div class='ChatMain__messageBody'>
                     ${message.text}
                   </div>
-                  <img class='ChatMain__messageBodyImage', src="${message.image_url}">
+                  ${image}
                 </div>`
     return html;
   }

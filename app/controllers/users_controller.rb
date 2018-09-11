@@ -12,6 +12,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    #検索
+    @users = User.where('name LIKE ?',"%#{params[:keyword]}%" )
+    #jbuilderを返す
+    render json: @users
+  end
+
   private
 
   def user_params

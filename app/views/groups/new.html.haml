@@ -1,8 +1,8 @@
 .chat-group-form
   %h1 新規チャットグループ
   =form_for @group, html:{id: "new_chat_group", class: "new_chat_group"} do |f|
-    .chat-group-form__errors
-      - if @group.errors.any?
+    - if @group.errors.any?
+      .chat-group-form__errors
         %h2
           ="#{@group.errors.count} 件のエラーが発生しました。"
         %ul

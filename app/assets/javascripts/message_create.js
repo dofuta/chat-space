@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function()  {
       var image = ''
     }
     // メッセージのhtmlを作成
-    var html = `<div class='ChatMain__message'>
+    var html = `<div class='ChatMain__message', data-messageid= "${message.id}">
                   <div class='ChatMain__messageUsername'>
                     ${message.user_name}
                   </div>

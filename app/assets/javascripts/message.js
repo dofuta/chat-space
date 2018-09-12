@@ -34,6 +34,14 @@ $(document).on('turbolinks:load', function()  {
       $('.FlashMessage').prepend(flashmessage)
   };
 
+
+
+
+
+
+//// メッセージ送信機能////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
   $('#new_message').on('submit', function(e){ // submitされた時に送られるparamsが引数に入る
     e.preventDefault();
     var formData = new FormData(this);// FormDataオブジェクトによってformのhtmlをパラメータの形にデータ化することができる
@@ -73,4 +81,50 @@ $(document).on('turbolinks:load', function()  {
       buildFlash("メッセージを入力してください。","alert");
     }
   });
+
+
+
+
+
+
+
+//// メッセージ自動更新機能//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+  // 5000msごとに実行される（前の処理が途中で止まっていたとしても、とにかく5秒ごとに発火)
+  setInterval(function(){
+      // pathにmessageが含まれていたら(チャット画面になっていたら)
+    if ($(location).attr('pathname').match(/message/)){
+      //現在のurlを取得
+      var url = $(location).attr("href");
+      //ビューに表示されている中で最新のメッセージのidを取得
+      var lastMessageId = $('.ChatMain__message:last-child').data('messageid');
+      var data = {"last_message_id": lastMessageId}
+      //非同期通信を行う
+      $.ajax({
+        url: url,
+        type: "GET",
+        data:  data, //上記で定義した最後のメッセージのidを代入
+        dataType: 'json', //ここで要求するデータ形式を（format）を指定
+      })
+      //成功した場合
+      .done(function(messages) {// 非同期通信(ajax)成功時、即時関数の第一引数（ここではmessages）にはサーバからの返り値が自動で代入される
+        //受け取ったjson形式の配列データをforEachする
+        messages.forEach(function (message){
+          var html = buildHTML(message);
+          $('.ChatMain__body').append(html) //新たに生成されたhtmlをchatmain_body以下の最後に追加する
+        })
+        // 新たなメッセージを取得した場合
+        if (messages.length != 0){
+          // 最新のメッセージまで自動スクロールする
+          $('.ChatMain__body').animate({scrollTop: $('.ChatMain__body')[0].scrollHeight}, 500, 'swing'); //最新のメッセージまで移動
+        }
+      })
+      //失敗した場合
+      .fail(function(){
+        buildFlash("メッセージの取得に失敗しました。","alert");
+      });
+    }
+  }, 5000); //5000msごとに発火
 });

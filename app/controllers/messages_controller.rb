@@ -3,8 +3,18 @@ class MessagesController < ApplicationController
 
   def index
     @message = Message.new
-    @messages = @group.messages
-    @groups = current_user.groups.includes(:user)
+
+    respond_to do |format|
+      # htmlの時
+      format.html do
+        @messages = @group.messages
+        @groups = current_user.groups.includes(:user)
+      end
+      # jsonの時（メッセージの自動アップデートのjsで呼び出すようになっている）
+      format.json do
+        @messages = @group.messages.includes(:user).where("id > ?", params[:last_message_id])
+      end
+    end
   end
 
   def create

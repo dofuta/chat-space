@@ -80,3 +80,6 @@ gem 'rails-i18n'
 #画像のアップローダー
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
+
+# aws s3利用
+gem 'fog-aws'

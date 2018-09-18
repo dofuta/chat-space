@@ -1,14 +1,10 @@
 $(document).on('turbolinks:load', function()  {
+  // メッセージのhtml作成
   function buildHTML(message) {
-    // 画像の投稿があった場合
-    if(message.image_url != undefined){
-      var image = `<img class='ChatMain__messageBodyImage', src="${message.image_url}">`
-    }else{
-    // 画像の投稿がなかった場合
-      var image = ''
-    }
+    // 三項演算子で、投稿に画像がある場合とない場合でhtmlの生成を分ける
+    var image = if(message.image_url != undefined):`<img class='ChatMain__messageBodyImage', src="${message.image_url}">`:'';
     // メッセージのhtmlを作成
-    var html = `<div class='ChatMain__message'>
+    var html = `<div class='ChatMain__message', data-messageid= "${message.id}">
                   <div class='ChatMain__messageUsername'>
                     ${message.user_name}
                   </div>
@@ -22,7 +18,7 @@ $(document).on('turbolinks:load', function()  {
                 </div>`
     return html;
   }
-
+  // Flashメッセージの表示
   function buildFlash(flashmessage,type){
     // flashmessageを削除
     $('.FlashMessage').empty();
@@ -34,6 +30,18 @@ $(document).on('turbolinks:load', function()  {
       $('.FlashMessage').prepend(flashmessage)
   };
 
+  // Chat画面かどうかの確認
+  function isChatView(){
+    // パスに"message"が含まれていたら
+    if ($(location).attr('pathname').match(/message/)){
+      return true
+    }
+    else{
+      return false
+    }
+  }
+
+// メッセージ送信機能
   $('#new_message').on('submit', function(e){ // submitされた時に送られるparamsが引数に入る
     e.preventDefault();
     var formData = new FormData(this);// FormDataオブジェクトによってformのhtmlをパラメータの形にデータ化することができる
@@ -41,7 +49,7 @@ $(document).on('turbolinks:load', function()  {
 
     //テキスト・画像が共にnullではなかった場合
     if ((formData.get('message[text]') != "") || (formData.get('message[image]').size != 0)){
-      //非同期通信を行う
+      // 非同期通信を行う
       $.ajax({
         url: url,
         type: "POST",
@@ -52,7 +60,7 @@ $(document).on('turbolinks:load', function()  {
                            //   ajaxのリクエストがFormDataのときはどちらの値も適切な状態で送ることが可能なため、falseにすることで設定が上書きされることを防ぎます。
                            //   FormDataをつかってフォームの情報を取得した時には必ずfalseにするという認識で構いません。
       })
-      //成功した場合
+      // 成功した場合
       .done(function(data) {// 非同期通信(ajax)成功時、即時関数の第一引数（ここではdata）にはサーバからの返り値が自動で代入される
         var html = buildHTML(data);
         $('.ChatMain__body').append(html) //新たに生成されたhtmlをchatmain_body以下の最後に追加する
@@ -61,7 +69,7 @@ $(document).on('turbolinks:load', function()  {
         $('.ChatMain__body').animate({scrollTop: $('.ChatMain__body')[0].scrollHeight}, 500, 'swing'); //最新のメッセージまで移動
         buildFlash("メッセージを送信しました。","notice")
       })
-      //失敗した場合
+      // 失敗した場合
       .fail(function(){
         // 予備知識
         // $.rails.enableFormElements($('#new_message')); //使用済みのformを有効化する。（本来は書かなくてもjquery-railsがやってくれているはずなのだが、、）
@@ -70,7 +78,45 @@ $(document).on('turbolinks:load', function()  {
       });
     }
     else{
+    // メッセージ・画像どちらかがnullだった場合
       buildFlash("メッセージを入力してください。","alert");
     }
   });
+
+// メッセージ自動更新機能
+  // 5000msごとに実行される（前の処理が途中で止まっていたとしても、とにかく5秒ごとに発火)
+  setInterval(function(){
+      // チャット画面になっていたら
+    if (isChatView){
+      //現在のurlを取得
+      var url = $(location).attr("href");
+      //ビューに表示されている中で最新のメッセージのidを取得
+      var lastMessageId = $('.ChatMain__message:last-child').data('messageid');
+      var data = {"last_message_id": lastMessageId}
+      //非同期通信を行う
+      $.ajax({
+        url:   url,
+        type: "GET",
+        data:  data, //上記で定義した最後のメッセージのidを代入
+        dataType: 'json', //ここで要求するデータ形式を（format）を指定
+      })
+      //成功した場合
+      .done(function(messages) {// 非同期通信(ajax)成功時、即時関数の第一引数（ここではmessages）にはサーバからの返り値が自動で代入される
+        //受け取ったjson形式の配列データをforEachする
+        messages.forEach(function (message){
+          var html = buildHTML(message);
+          $('.ChatMain__body').append(html) //新たに生成されたhtmlをchatmain_body以下の最後に追加する
+        })
+        // 新たなメッセージを取得した場合
+        if (messages.length != 0){
+          // 最新のメッセージまで自動スクロールする
+          $('.ChatMain__body').animate({scrollTop: $('.ChatMain__body')[0].scrollHeight}, 500, 'swing'); //最新のメッセージまで移動
+        }
+      })
+      //失敗した場合
+      .fail(function(){
+        buildFlash("メッセージの取得に失敗しました。","alert");
+      });
+    }
+  }, 5000); //5000msごとに発火
 });

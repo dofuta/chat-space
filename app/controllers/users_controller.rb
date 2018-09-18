@@ -13,8 +13,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    #検索
-    @users = User.where('name LIKE ?',"%#{params[:keyword]}%" )
+    #検索。 current_userは表示させない。
+    @users = User.where('name LIKE ?',"%#{params[:keyword]}%" ).where.not('id = ?', "#{current_user.id}")
     #jbuilderを返す
     render json: @users
   end

@@ -26,4 +26,4 @@ namespace :deploy do
   end
 end
 
-set :branch, "deploy_preparation"
+set :branch, "master"

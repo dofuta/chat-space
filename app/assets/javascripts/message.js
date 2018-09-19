@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function()  {
   // メッセージのhtml作成
   function buildHTML(message) {
     // 三項演算子で、投稿に画像がある場合とない場合でhtmlの生成を分ける
-    var image = message.image_url != undefined ? :`<img class='ChatMain__messageBodyImage', src="${message.image_url}">` : '';
+    var image = (message.image) ? `<img class='ChatMain__messageBodyImage', src="${message.image_url}">`:'';
     // メッセージのhtmlを作成
     var html = `<div class='ChatMain__message', data-messageid= "${message.id}">
                   <div class='ChatMain__messageUsername'>

@@ -42,6 +42,14 @@ group :development, :test do
   gem 'factory_girl_rails', "~> 4.0"
   gem 'faker'
   gem 'rails-controller-testing'
+
+  # Capistrano for auto deployment
+  gem 'capistrano'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano3-unicorn'
+  gem 'capistrano-secrets-yml'
 end
 
 group :development do
@@ -52,6 +60,10 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-rails'
+end
+
+group :production do
+  gem 'unicorn'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -69,3 +81,6 @@ gem 'rails-i18n'
 #画像のアップローダー
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
+
+# aws s3利用
+gem 'fog-aws'

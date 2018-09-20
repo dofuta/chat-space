@@ -76,7 +76,7 @@ $(document).on('turbolinks:load', function()  {
   // 5000msごとに実行される（前の処理が途中で止まっていたとしても、とにかく5秒ごとに発火)
   setInterval(function(){
       // チャット画面になっていたら
-    if ($(location).attr('pathname').match(/message/){
+    if ($(location).attr('pathname').match(/message/)){
       //現在のurlを取得
       var url = $(location).attr("href");
       //ビューに表示されている中で最新のメッセージのidを取得

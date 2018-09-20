@@ -1,6 +1,8 @@
 # config valid only for current version of Capistrano
 lock '3.11.0'
 
+set :deploy_to, '/var/www/chat-space'
+
 set :application, 'chat-space'
 set :repo_url,  'git@github.com:dofuta/chat-space.git'
 

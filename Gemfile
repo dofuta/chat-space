@@ -84,3 +84,4 @@ gem 'mini_magick'
 
 # aws s3利用
 gem 'fog-aws'
+gem 'nokogiri', '1.8.2'

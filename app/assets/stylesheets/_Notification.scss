@@ -4,11 +4,16 @@
   font-weight: bold;
   font-size: 15px;
   width: 100vw;
-  text-align: center;
   &__notice{
+    color: white;
+    text-align: center;
+    font-weight: bold;
     background-color: $blue;
   }
   &__alert{
+    color: white;
+    text-align: center;
+    font-weight: bold;
     background-color: $red;
   }
 }

@@ -56,7 +56,7 @@ $(document).on('turbolinks:load', function()  {
         $('.ChatMain__footerTypeArea').val('') //タイプエリアを空白にする
         $('#message_image').val('') //imageファイルを空にする
         $('.ChatMain__body').animate({scrollTop: $('.ChatMain__body')[0].scrollHeight}, 500, 'swing'); //最新のメッセージまで移動
-        buildNotice("メッセージを送信しました。","notice");
+        // buildNotice("メッセージを送信しました。","notice");
       })
       // 失敗した場合
       .fail(function(){

@@ -18,16 +18,16 @@ $(document).on('turbolinks:load', function()  {
                 </div>`
     return html;
   }
-  // Flashメッセージの表示
-  function buildFlash(flashmessage,type){
-    // flashmessageを削除
-    $('.FlashMessage').empty();
-    // flashmessageを作成
-      var flashmessage = `<p class='FlashMessage__${type}'>
-                            ${flashmessage}
+  // notificationメッセージの表示
+  function buildNotice(notification,type){
+    // notificationを削除
+    $('.Notification').empty();
+    // htmlを作成
+      var html = `<p class='Notification__${type}'>
+                            ${notification}
                           <p>`
-      // flashmessageを挿入
-      $('.FlashMessage').prepend(flashmessage)
+      // htmlを挿入
+      $('.Notification').prepend(html)
   };
 
 // メッセージ送信機能
@@ -56,19 +56,19 @@ $(document).on('turbolinks:load', function()  {
         $('.ChatMain__footerTypeArea').val('') //タイプエリアを空白にする
         $('#message_image').val('') //imageファイルを空にする
         $('.ChatMain__body').animate({scrollTop: $('.ChatMain__body')[0].scrollHeight}, 500, 'swing'); //最新のメッセージまで移動
-        buildFlash("メッセージを送信しました。","notice")
+        buildNotice("メッセージを送信しました。","notice")
       })
       // 失敗した場合
       .fail(function(){
         // 予備知識
         // $.rails.enableFormElements($('#new_message')); //使用済みのformを有効化する。（本来は書かなくてもjquery-railsがやってくれているはずなのだが、、）
         // formのタグにdisabledが追加されてボタンが押せなくなってしまうので、ここで上記を記入して解除か、application.rbに記述して自動の昨日を解除
-        buildFlash("メッセージの送信に失敗しました。","alert");
+        buildNotice("メッセージの送信に失敗しました。","alert");
       });
     }
     else{
     // メッセージ・画像どちらかがnullだった場合
-      buildFlash("メッセージを入力してください。","alert");
+      buildNotice("メッセージを入力してください。","alert");
     }
   });
 
@@ -104,7 +104,7 @@ $(document).on('turbolinks:load', function()  {
       })
       //失敗した場合
       .fail(function(){
-        buildFlash("メッセージの取得に失敗しました。","alert");
+        buildNotice("メッセージの取得に失敗しました。","alert");
       });
     }
   }, 5000); //5000msごとに発火

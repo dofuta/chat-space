@@ -63,12 +63,12 @@ $(document).on('turbolinks:load', function()  {
         // 予備知識
         // $.rails.enableFormElements($('#new_message')); //使用済みのformを有効化する。（本来は書かなくてもjquery-railsがやってくれているはずなのだが、、）
         // formのタグにdisabledが追加されてボタンが押せなくなってしまうので、ここで上記を記入して解除か、application.rbに記述して自動の昨日を解除
-        buildNotice("メッセージの送信に失敗しました。","alert");
+        // buildNotice("メッセージの送信に失敗しました。","alert");
       });
     }
     else{
     // メッセージ・画像どちらかがnullだった場合
-      buildNotice("メッセージを入力してください。","alert");
+      // buildNotice("メッセージを入力してください。","alert");
     }
   });
 

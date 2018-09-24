@@ -2,17 +2,18 @@
   float: right;
   height: 100vh;
   width: calc( 100vw - 300px );
+  background-color: #FAFAFA;
   &__header{
     height: 96px;
     width: 100%;
     float: left;
-    border-bottom: 1px solid;
     border-color: #CCCCCC;
+    background-color: white;
     &Name{
       height: 70%;
       width: 400px;
       color: $blackGray;
-      font-size: 24px;
+      font-size: 20px;
       float: left;
       padding-left: 40px;
       // 中身のインライン要素縦方向中央寄せ
@@ -55,14 +56,15 @@
   &__footer{
     height: 100px;
     clear: both;
-    background-color: $gray;
+    background-color: #DDDDDD;
     // 中身の要素縦方向中央寄せ
     display: flex;
   	align-items: center;
     &TypeArea{
       height: 60px;
       width: 80%;
-      margin-left: 20px;
+      margin-left: 30px;
+      padding-left: 10px;
       background-color: white;
       border: none;
     }
@@ -91,7 +93,6 @@
       background-color: $blue;
       color: white;
       font-size: 20px;
-      font-weight: bold;
       // 中身の要素縦方向中央寄せ
       display: flex;
       align-items: center;
